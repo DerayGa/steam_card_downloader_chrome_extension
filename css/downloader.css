@@ -1,0 +1,11 @@
+button.downloader {
+  cursor: pointer;
+  border: none;
+  position: absolute;
+  font-size: large;
+  border-radius: 4px;
+}
+
+button.copyAsMarkdown:active {
+  transform: translateY(1px);
+}
