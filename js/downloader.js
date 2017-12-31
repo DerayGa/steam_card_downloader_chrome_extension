@@ -33,16 +33,15 @@ $(document).ready(() => {
 
       var cardText = $($('div.badge_card_set_text.ellipsis', card)[0]);
       var name = $(cardText).clone().children().remove().end().text().trim();
-
-      downloadImage($('img', card).attr('src'), `${idx+1}. ${name}.png`, 'png')
-      downloadImage(imgLink, `${idx+1}. ${name}.jpg`, 'jpeg')
+      downloadImage($('img', card).attr('src'), `${idx+1}. ${name}.png`, 'png');
+      downloadImage(imgLink, `${idx+1}. ${name}.jpg`, 'jpeg');
     });
   })
   $('body').append(downloaderButton);
 })
 
 function downloadImage(src, filename, type) {
-  fetch(src, { mode: 'no-cors' })
+  fetch(src)
     .then(response => response.blob())
     .then((blob) => {
       var link = document.createElement('a');
