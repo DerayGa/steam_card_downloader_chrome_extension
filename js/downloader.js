@@ -14,6 +14,14 @@ $(document).ready(() => {
     backgroundColor: $(craft_button).css('backgroundColor'),
     color: $(craft_button).css('color'),
   });
+
+  $( window ).resize(function() {
+    offset = $(craft_button).offset();
+    $(downloaderButton).css({
+      left: offset.left + $(craft_button).width() + 30,
+    });
+  });
+
   $(downloaderButton).click(() => {
 
     $.each(cards, (idx, card) => {
