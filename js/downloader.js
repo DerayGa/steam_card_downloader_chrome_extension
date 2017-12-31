@@ -42,9 +42,9 @@ $(document).ready(() => {
 })
 
 function downloadImage(src, filename, type) {
-  fetch(src)
-    .then(response => response.blob()).
-    then((blob) => {
+  fetch(src, { mode: 'no-cors' })
+    .then(response => response.blob())
+    .then((blob) => {
       var link = document.createElement('a');
       document.body.appendChild(link);
       file = new Blob([blob], { type : `image/${type}` });
