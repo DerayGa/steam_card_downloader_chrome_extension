@@ -6,19 +6,36 @@ $(document).ready(() => {
 
   var gamecard_details = $('div.badge_content.gamecard_details');
   var craft_button = $('div.badge_craft_button', gamecard_details);
-  var offset = $(craft_button).offset();
+  var parameter;
+  if (craft_button.length) {
+    parameter = $(craft_button).offset();
+    parameter.height = $(craft_button).height();
+    parameter.width = $(craft_button).width() + 30;
+    parameter.backgroundColor = $(craft_button).css('backgroundColor');
+    parameter.color = $(craft_button).css('color');
+  } else {
+    parameter = $(gamecard_details).offset();
+    parameter.width = $(gamecard_details).width() + 30;
+    parameter.height = $(gamecard_details).height();
+    parameter.backgroundColor = '#5491CF';
+    parameter.color = '#FFF';
+  }
   $(downloaderButton).css({
-    top: offset.top,
-    left: offset.left + $(craft_button).width() + 30,
-    height: $(craft_button).height(),
-    backgroundColor: $(craft_button).css('backgroundColor'),
-    color: $(craft_button).css('color'),
+    top: parameter.top,
+    left: parameter.left + parameter.width,
+    height: parameter.height,
+    backgroundColor: parameter.backgroundColor,
+    color: parameter.color,
   });
 
   $( window ).resize(function() {
-    offset = $(craft_button).offset();
+    if (craft_button.length) {
+      parameter.left = $(craft_button).offset().left;
+    } else {
+      parameter.left = $(gamecard_details).offset().left;
+    }
     $(downloaderButton).css({
-      left: offset.left + $(craft_button).width() + 30,
+      left: parameter.left + parameter.width,
     });
   });
 
