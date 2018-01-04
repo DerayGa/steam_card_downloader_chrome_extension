@@ -1,7 +1,7 @@
 $(document).ready(() => {
   var mainContent = $('div.maincontent');
   var badge_detail_tasks = $('div.badge_detail_tasks', mainContent)[0];
-  var cards = $('div.badge_card_set_card.owned', badge_detail_tasks);
+  var cards = $('div.badge_card_set_card', badge_detail_tasks);
   var downloaderButton = $(`<button class="downloader">Download Cards</button>`);
 
   var gamecard_details = $('div.badge_content.gamecard_details');
@@ -44,14 +44,18 @@ $(document).ready(() => {
     $.each(cards, (idx, card) => {
       var cardZoom = $($('div.game_card_ctn.with_zoom', card)[0]);
       var imgLink = cardZoom.attr('onclick');
-      var startPos = imgLink.indexOf("http:");
-      var endPos = imgLink.indexOf('"', startPos);
-      imgLink = imgLink.substring(startPos, endPos);
+      if (imgLink) {
+        var startPos = imgLink.indexOf("http:");
+        var endPos = imgLink.indexOf('"', startPos);
+        imgLink = imgLink.substring(startPos, endPos);
+      }
 
       var cardText = $($('div.badge_card_set_text.ellipsis', card)[0]);
       var name = $(cardText).clone().children().remove().end().text().trim();
       downloadImage($('img', card).attr('src'), `${idx+1}. ${name}.png`, 'png');
-      downloadImage(imgLink, `${idx+1}. ${name}.jpg`, 'jpeg');
+      if (imgLink) {
+        downloadImage(imgLink, `${idx+1}. ${name}.jpg`, 'jpeg');
+      }
     });
   })
   $('body').append(downloaderButton);
