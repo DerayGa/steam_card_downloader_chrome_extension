@@ -2,7 +2,8 @@ $(document).ready(() => {
   var mainContent = $('div.maincontent');
   var badge_detail_tasks = $('div.badge_detail_tasks', mainContent)[0];
   var cards = $('div.badge_card_set_card', badge_detail_tasks);
-  var downloaderButton = $(`<button class="downloader">Download Cards</button>`);
+  var downloadTxt = chrome.i18n.getMessage("download");
+  var downloaderButton = $(`<button class="downloader">${downloadTxt}</button>`);
 
   var gamecard_details = $('div.badge_content.gamecard_details');
   var craft_button = $('div.badge_craft_button', gamecard_details);

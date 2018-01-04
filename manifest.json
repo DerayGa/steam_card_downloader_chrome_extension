@@ -3,7 +3,7 @@
 
   "name": "Steam Card Downloader",
   "description": "Download Steam Card Image",
-  "version": "1.8.0",
+  "version": "1.8.2",
   "content_security_policy": "script-src 'self' https://ajax.googleapis.com; object-src 'self'",
   "icons": {
     "16": "icons/icon16.png",
@@ -25,6 +25,7 @@
       "css": ["./css/downloader.css"]
     }
   ],
+  "default_locale" : "en",
   "permissions": [
     "tabs",
     "downloads",
